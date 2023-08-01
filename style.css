@@ -100,16 +100,24 @@ body {
   
   #choices {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     margin-top: 20px;
+    gap: 10px
   }
+  
   
   button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #F9BE00;
+    background-color: #e6e7ee;
     border: 0;
-    border-radius: 10px;
+    border-radius: 6px;
   }
-  
+
+  #selectedChoice {
+    font-size: 16px; /* Defina o tamanho da fonte desejado */
+    color:#aeafc2; /* Defina a cor desejada para a escolha selecionada */
+    font-style: italic;
+  }

@@ -7,7 +7,8 @@
   </head>
 
   <body>
-
+    <button id="languageBtn" onclick="toggleLanguage()">Mudar Idioma</button>
+    
     <div id="theme-switch">
       <label class="switch">
         <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
@@ -23,6 +24,7 @@
     </div>
 
     <div id="game-container" style="display: none;">
+        <div id="selectedChoice"></div>
       <h1>Text Adventure Game</h1>
       <p id="story"></p>
       <div id="choices">

@@ -1,87 +1,160 @@
 let gameState = null;
+    let currentLanguage = "pt"; // Defina o idioma padrão como português
 
-function startNewGame() {
-  // Define the initial game state for a new game
-  gameState = {
-    story: "Você está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita?",
-    choices: [
-      { text: "Esquerda", next: "left" },
-      { text: "Direita", next: "right" }
-    ]
-  };
-  updateUI();
-  document.getElementById("start-container").style.display = "none";
-  document.getElementById("game-container").style.display = "block";
-}
+    function startNewGame() {
 
-function continueGame() {
-  // Retrieve the game state from local storage if available, otherwise start a new game
-  const savedGameState = JSON.parse(localStorage.getItem("textAdventureGameState"));
-  if (savedGameState) {
-    gameState = savedGameState;
-  } else {
+// Defina o estado inicial do jogo para um novo jogo
     gameState = {
-      story: "Você não tem um jogo salvo. Iniciando novo jogo...",
-      choices: [
-        { text: "Continuar", next: "startNew" },
-        { text: "Iniciar Novo Jogo", next: "startNew" }
-      ]
+        playerName: getPlayerName(), // Armazena o nome do jogador
+        story: getLocalizedText("Você está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita?", "You are in a dark forest. Do you want to go left or right?"),
+        choices: [
+        { text: getLocalizedText("Esquerda", "Left"), next: "left" },
+        { text: getLocalizedText("Direita", "Right"), next: "right" }
+        ],
+        currentChoice: 0 // Inicialmente, nenhuma escolha está selecionada (0 é o valor padrão)
     };
-  }
-  updateUI();
-  document.getElementById("start-container").style.display = "none";
-  document.getElementById("game-container").style.display = "block";
-}
+    
+      updateUI();
+      document.getElementById("start-container").style.display = "none";
+      document.getElementById("game-container").style.display = "block";
+    }
 
-function makeChoice(choiceNumber) {
-  const choice = gameState.choices[choiceNumber - 1];
-  gameState.story = "Você escolheu ir para " + choice.text.toLowerCase() + ". ";
+    function continueGame() {
+      // Recupera o estado do jogo do armazenamento local, se disponível, caso contrário, inicia um novo jogo
+      const savedGameState = JSON.parse(localStorage.getItem("textAdventureGameState"));
+      if (savedGameState) {
+        gameState = savedGameState;
+      } else {
+        gameState = {
+          story: getLocalizedText("Você não tem um jogo salvo. Iniciando novo jogo...", "You don't have a saved game. Starting a new game..."),
+          choices: [
+            { text: getLocalizedText("Continuar", "Continue"), next: "startNew" },
+            { text: getLocalizedText("Iniciar Novo Jogo", "Start New Game"), next: "startNew" }
+          ]
+        };
+      }
+      updateUI();
+      document.getElementById("start-container").style.display = "none";
+      document.getElementById("game-container").style.display = "block";
+    }
 
-  // Here you can define different storylines based on the player's choices
-  if (choice.next === "left") {
-    gameState.story += "Você encontra uma cabana abandonada.";
-    gameState.choices = [
-      { text: "Investigar a cabana", next: "investigate" },
-      { text: "Continuar a explorar a floresta", next: "continue" }
-    ];
-  } else if (choice.next === "right") {
-    gameState.story += "Você encontra um rio e uma ponte quebrada.";
-    gameState.choices = [
-      { text: "Tentar atravessar nadando", next: "swim" },
-      { text: "Procurar outra rota", next: "findAnotherRoute" }
-    ];
-  }
+    function makeChoice(choiceNumber) {
+        const choice = gameState.choices[choiceNumber - 1];
+      
+        // Atualiza a escolha selecionada
+        gameState.currentChoice = choiceNumber;
+      
+        // Armazena o texto da escolha selecionada
+        const selectedChoiceText = getLocalizedText('"' + choice.text + '"', '"' + choice.text + '"');
+      
+        // Atualiza a história com base na escolha feita
+        if (choice.next === "left") {
+            gameState.story = getLocalizedText(`Você encontra uma cabana abandonada.`, `You come across an abandoned cabin, ${gameState.playerName}.`);
+            gameState.choices = [
+              { text: getLocalizedText(`Investigar a cabana.`, `Investigate the cabin.`), next: "investigate" },
+              { text: getLocalizedText(`Continuar a explorar a floresta.`, `Continue exploring the forest.`), next: "continue" }
+            ];
+          } else if (choice.next === "right") {
+            gameState.story = getLocalizedText(`Você encontra um rio e uma ponte quebrada, ${gameState.playerName}.`, `You encounter a river and a broken bridge, ${gameState.playerName}.`);
+            gameState.choices = [
+              { text: getLocalizedText(`Tentar atravessar nadando, ${gameState.playerName}.`, `Try to swim across, ${gameState.playerName}.`), next: "swim" },
+              { text: getLocalizedText(`Procurar outra rota, ${gameState.playerName}.`, `Look for another route, ${gameState.playerName}.`), next: "findAnotherRoute" }
+            ];
+          }
+      
+        // Salva o estado do jogo no armazenamento local
+        localStorage.setItem("textAdventureGameState", JSON.stringify(gameState));
+      
+        // Atualiza a interface do usuário
+        updateUI();
+      
+        // Atualiza a div 'selectedChoice' com o texto da escolha selecionada
+        const selectedChoiceDiv = document.getElementById("selectedChoice");
+        selectedChoiceDiv.innerText = selectedChoiceText;
+      }
+      
 
-  // Save the game state to local storage
-  localStorage.setItem("textAdventureGameState", JSON.stringify(gameState));
+    function updateUI() {
+        document.getElementById("story").innerText = gameState.story;
+      
+        const choice1Btn = document.getElementById("choice1");
+        const choice2Btn = document.getElementById("choice2");
+        const selectedChoiceDiv = document.getElementById("selectedChoice");
+      
+        choice1Btn.innerText = gameState.choices[0].text;
+        choice2Btn.innerText = gameState.choices[1].text;
+      
+        // Remove a classe "selected-choice" dos botões antes de atualizar
+        choice1Btn.classList.remove("selected-choice");
+        choice2Btn.classList.remove("selected-choice");
+      
+        // Verifica qual escolha está selecionada e exibe na div de escolha selecionada
+        if (gameState.currentChoice === 1) {
+          selectedChoiceDiv.innerText = gameState.choices[0].text;
+          choice1Btn.classList.add("selected-choice");
+        } else if (gameState.currentChoice === 2) {
+          selectedChoiceDiv.innerText = gameState.choices[1].text;
+          choice2Btn.classList.add("selected-choice");
+        } else {
+          selectedChoiceDiv.innerText = ""; // Caso nenhuma escolha seja selecionada, a div fica vazia
+        }
+            
+        // Atualiza o texto do botão "Mudar Idioma" para refletir o idioma atual
+        document.getElementById("languageBtn").innerText = getLocalizedText("Mudar Idioma", "Change Language");
+      }
+      
+    function toggleLanguage() {
+      // Alterna entre os idiomas 'pt' (português) e 'en' (inglês)
+      currentLanguage = currentLanguage === "pt" ? "en" : "pt";
+      updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
 
-  updateUI();
-}
+      // Salva o idioma selecionado no armazenamento local
+      localStorage.setItem("textAdventureLanguage", currentLanguage);
+    }
 
-function updateUI() {
-  document.getElementById("story").innerText = gameState.story;
+    // Função para alternar entre o modo claro e o modo escuro
+    function toggleDarkMode() {
+      const body = document.body;
+      body.classList.toggle("dark-mode");
 
-  const choice1Btn = document.getElementById("choice1");
-  const choice2Btn = document.getElementById("choice2");
+      // Salvar a preferência do usuário no armazenamento local
+      const isDarkMode = body.classList.contains("dark-mode");
+      localStorage.setItem("textAdventureDarkMode", isDarkMode);
+    }
 
-  choice1Btn.innerText = gameState.choices[0].text;
-  choice2Btn.innerText = gameState.choices[1].text;
-}
+    // Verifica a preferência do usuário no carregamento da página
+    document.addEventListener("DOMContentLoaded", function () {
+      const isDarkMode = localStorage.getItem("textAdventureDarkMode") === "true";
+      const body = document.body;
+      body.classList.toggle("dark-mode", isDarkMode);
 
+      // Verifica se há um idioma salvo no armazenamento local
+      const savedLanguage = localStorage.getItem("textAdventureLanguage");
+      if (savedLanguage) {
+        currentLanguage = savedLanguage;
+      } else {
+        // Se não houver, tenta obter o idioma do navegador
+        const userLanguage = navigator.language.toLowerCase();
+        if (userLanguage.startsWith("pt")) {
+          currentLanguage = "pt";
+        } else {
+          currentLanguage = "en";
+        }
+      }
 
-// Função para alternar entre o modo claro e o modo escuro
-function toggleDarkMode() {
-  const body = document.body;
-  body.classList.toggle("dark-mode");
+      updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
+    });
 
-  // Salvar a preferência do usuário no armazenamento local
-  const isDarkMode = body.classList.contains("dark-mode");
-  localStorage.setItem("textAdventureDarkMode", isDarkMode);
-}
+    // Função para obter o texto localizado com base no idioma atual
+    function getLocalizedText(ptText, enText) {
+      return currentLanguage === "pt" ? ptText : enText;
+    }
 
-// Verificar a preferência do usuário no carregamento da página
-document.addEventListener("DOMContentLoaded", function () {
-  const isDarkMode = localStorage.getItem("textAdventureDarkMode") === "true";
-  const body = document.body;
-  body.classList.toggle("dark-mode", isDarkMode);
-});
+    function getPlayerName() {
+        const name = prompt(getLocalizedText("Digite seu nome:", "Enter your name:"));
+        return name || "Yaami"; // Se o jogador não digitar um nome, use "Luni" como padrão
+      }
+      
+
+// ${gameState.playerName}
+      
