@@ -1,8 +1,9 @@
 let gameState = null;
 let currentLanguage = "pt"; // Defina o idioma padrão como português
+let isGameStarted = false; // Defina esta variável como false inicialmente
 
 function startNewGame() {
-
+    isGameStarted = true;
 // Defina o estado inicial do jogo para um novo jogo
     gameState = {
         playerName: getPlayerName(), // Armazena o nome do jogador
@@ -20,6 +21,7 @@ function startNewGame() {
     }
 
     function continueGame() {
+        isGameStarted = true;
       // Recupera o estado do jogo do armazenamento local, se disponível, caso contrário, inicia um novo jogo
       const savedGameState = JSON.parse(localStorage.getItem("textAdventureGameState"));
       if (savedGameState) {
@@ -130,18 +132,23 @@ function startNewGame() {
       }
       
       
-    function toggleLanguage() {
-      // Alterna entre os idiomas 'pt' (português) e 'en' (inglês)
-      currentLanguage = currentLanguage === "pt" ? "en" : "pt";
-
-      // Salva o idioma selecionado no armazenamento local
-      localStorage.setItem("textAdventureLanguage", currentLanguage);
-
-      // Atualiza o texto do jogo com o novo idioma selecionado
-      gameState.story = getLocalizedText(gameState.story, gameState.story);
-      updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
-
-    }
+      function toggleLanguage() {
+        // Verifica se o jogo já começou
+        if (isGameStarted) {
+          // Se o jogo já começou, avisa o usuário e não altera o idioma
+          alert(getLocalizedText("Você não pode mudar o idioma depois de começar o jogo.", "You cannot change the language after the game has started."));
+        } else {
+          // Alterna entre os idiomas 'pt' (português) e 'en' (inglês)
+          currentLanguage = currentLanguage === "pt" ? "en" : "pt";
+          
+          // Salva o idioma selecionado no armazenamento local
+          localStorage.setItem("textAdventureLanguage", currentLanguage);
+      
+          // Atualiza o texto do jogo com o novo idioma selecionado
+          gameState.story = getLocalizedText(gameState.story, gameState.story);
+          updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
+        }
+      }
 
     // Função para alternar entre o modo claro e o modo escuro
     function toggleDarkMode() {
