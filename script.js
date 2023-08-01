@@ -132,23 +132,23 @@ function startNewGame() {
       }
       
       
-      function toggleLanguage() {
-        // Verifica se o jogo já começou
-        if (isGameStarted) {
-          // Se o jogo já começou, avisa o usuário e não altera o idioma
-          alert(getLocalizedText("Você não pode mudar o idioma depois de começar o jogo.", "You cannot change the language after the game has started."));
-        } else {
-          // Alterna entre os idiomas 'pt' (português) e 'en' (inglês)
-          currentLanguage = currentLanguage === "pt" ? "en" : "pt";
-          
-          // Salva o idioma selecionado no armazenamento local
-          localStorage.setItem("textAdventureLanguage", currentLanguage);
-      
-          // Atualiza o texto do jogo com o novo idioma selecionado
-          gameState.story = getLocalizedText(gameState.story, gameState.story);
-          updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
-        }
-      }
+function toggleLanguage() {
+  // Verifica se o jogo já começou
+  if (isGameStarted) {
+    // Se o jogo já começou, avisa o usuário e não altera o idioma
+    alert(getLocalizedText("Você não pode mudar o idioma depois de começar o jogo.", "You cannot change the language after the game has started."));
+  } else {
+    // Alterna entre os idiomas 'pt' (português) e 'en' (inglês)
+    currentLanguage = currentLanguage === "pt" ? "en" : "pt";
+    
+    // Salva o idioma selecionado no armazenamento local
+    localStorage.setItem("textAdventureLanguage", currentLanguage);
+
+    // Atualiza o texto do jogo com o novo idioma selecionado
+    gameState.story = getLocalizedText(gameState.story, gameState.story);
+    updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
+  }
+}
 
     // Função para alternar entre o modo claro e o modo escuro
     function toggleDarkMode() {
