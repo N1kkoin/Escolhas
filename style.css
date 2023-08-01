@@ -89,17 +89,17 @@ body {
   }
   
   /* ... Outros estilos ... */
-  
+
   #start-container{
     max-width: 600px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
     border: 2px solid #ccc;
   }
   
   #game-container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding: 20px;
     border: 2px solid #ccc;
   }

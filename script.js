@@ -6,7 +6,7 @@ let gameState = null;
 // Defina o estado inicial do jogo para um novo jogo
     gameState = {
         playerName: getPlayerName(), // Armazena o nome do jogador
-        story: getLocalizedText("Você está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita?", "You are in a dark forest. Do you want to go left or right?"),
+        story: getLocalizedText("<b>Você</b> está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita?", "You are in a dark forest. Do you want to go left or right?"),
         choices: [
         { text: getLocalizedText("Esquerda", "Left"), next: "left" },
         { text: getLocalizedText("Direita", "Right"), next: "right" }
@@ -75,7 +75,7 @@ let gameState = null;
       
 
     function updateUI() {
-        document.getElementById("story").innerText = gameState.story;
+        document.getElementById("story").innerHTML = gameState.story;
       
         const choice1Btn = document.getElementById("choice1");
         const choice2Btn = document.getElementById("choice2");
