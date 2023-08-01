@@ -118,18 +118,24 @@ body {
     flex-direction: column;
     justify-content: space-around;
     margin-top: 20px;
-    border: 1px solid #000000;
     border-radius: 8px;
   }
 
   #choices button{
-    border-bottom: 1px solid black;
+    border: 2px solid #2196F3;
     border-radius: 0;
   }
 
   #choices button:last-child{
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+  }
+
+  #choices button:first-child{
+    border-radius: 5px 5px 0 0;
     border-bottom: none;
   }
+  
   
   #choices button:hover{
     background-color: #2196F3;

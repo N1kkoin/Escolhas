@@ -1,7 +1,7 @@
 let gameState = null;
-    let currentLanguage = "pt"; // Defina o idioma padrão como português
+let currentLanguage = "pt"; // Defina o idioma padrão como português
 
-    function startNewGame() {
+function startNewGame() {
 
 // Defina o estado inicial do jogo para um novo jogo
     gameState = {
@@ -78,6 +78,9 @@ let gameState = null;
         const storyElement = document.getElementById("story");
         const choice1Btn = document.getElementById("choice1");
         const choice2Btn = document.getElementById("choice2");
+        const choice3Btn = document.getElementById("choice3");
+        const choice4Btn = document.getElementById("choice4");
+        const choice5Btn = document.getElementById("choice5");
         const selectedChoiceDiv = document.getElementById("selectedChoice");
       
         // Limpa o conteúdo anterior antes de digitar o novo texto
@@ -87,7 +90,10 @@ let gameState = null;
           // Oculta os botões antes de exibir o texto com efeito de digitação
         choice1Btn.style.display = "none";
         choice2Btn.style.display = "none";
-      
+        choice3Btn.style.display = "none";
+        choice4Btn.style.display = "none";
+        choice5Btn.style.display = "none";
+              
         // Exibe a história com efeito de digitação
         typeText(storyElement, gameState.story, 30);
       
