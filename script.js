@@ -133,10 +133,14 @@ function startNewGame() {
     function toggleLanguage() {
       // Alterna entre os idiomas 'pt' (português) e 'en' (inglês)
       currentLanguage = currentLanguage === "pt" ? "en" : "pt";
-      updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
 
       // Salva o idioma selecionado no armazenamento local
       localStorage.setItem("textAdventureLanguage", currentLanguage);
+
+      // Atualiza o texto do jogo com o novo idioma selecionado
+      gameState.story = getLocalizedText(gameState.story, gameState.story);
+      updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
+
     }
 
     // Função para alternar entre o modo claro e o modo escuro
