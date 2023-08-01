@@ -74,16 +74,34 @@ let gameState = null;
       }
       
 
-    function updateUI() {
-        document.getElementById("story").innerHTML = gameState.story;
-      
+      function updateUI() {
+        const storyElement = document.getElementById("story");
         const choice1Btn = document.getElementById("choice1");
         const choice2Btn = document.getElementById("choice2");
         const selectedChoiceDiv = document.getElementById("selectedChoice");
       
+        // Limpa o conteúdo anterior antes de digitar o novo texto
+        storyElement.innerHTML = "";
+        selectedChoiceDiv.innerText = "";
+
+          // Oculta os botões antes de exibir o texto com efeito de digitação
+        choice1Btn.style.display = "none";
+        choice2Btn.style.display = "none";
+      
+        // Exibe a história com efeito de digitação
+        typeText(storyElement, gameState.story, 30);
+      
+        // Espera até que a história tenha sido completamente exibida antes de mostrar as escolhas
+        setTimeout(() => {
+          // Exibe as escolhas com efeito de digitação
         choice1Btn.innerText = gameState.choices[0].text;
         choice2Btn.innerText = gameState.choices[1].text;
-      
+
+        // Mostra os botões de escolha
+        choice1Btn.style.display = "block";
+        choice2Btn.style.display = "block";
+        }, gameState.story.length * 30); // Aguarda o tempo necessário para digitar todo o texto da história
+
         // Remove a classe "selected-choice" dos botões antes de atualizar
         choice1Btn.classList.remove("selected-choice");
         choice2Btn.classList.remove("selected-choice");
@@ -155,6 +173,38 @@ let gameState = null;
         return name || "Yaami"; // Se o jogador não digitar um nome, use "Luni" como padrão
       }
       
-
 // ${gameState.playerName}
       
+
+function typeText(element, text, interval) {
+    let index = 0;
+    const tempElement = document.createElement("span");
+    element.innerHTML = ""; // Limpa o conteúdo anterior antes de digitar o novo texto
+  
+    function type() {
+      const char = text.charAt(index);
+  
+      if (char === "<") {
+        // Se encontrar uma tag HTML, avança até encontrar o fechamento da tag ">"
+        let closingTagIndex = text.indexOf(">", index);
+        if (closingTagIndex !== -1) {
+          closingTagIndex++; // Avança para o próximo caractere após ">"
+          tempElement.innerHTML = text.substring(0, closingTagIndex);
+          element.innerHTML = tempElement.innerHTML;
+          index = closingTagIndex;
+        }
+      } else {
+        // Se não for uma tag HTML, exibe a letra normalmente
+        tempElement.innerHTML = text.substring(0, index + 1);
+        element.innerHTML = tempElement.innerHTML;
+        index++;
+      }
+  
+      if (index < text.length) {
+        setTimeout(type, interval);
+      }
+    }
+  
+    type();
+  }
+  

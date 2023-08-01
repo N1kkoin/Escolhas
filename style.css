@@ -1,18 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 body {
-    font-family: Arial, sans-serif;
     transition: background-color 0.3s ease;
     text-align: center;
-  }
-  
-  /* Estilos para o modo claro */
-  body.light-mode {
-    background-color: #f0f0f0;
-    color: #333;
+    font-family: 'Rubik', sans-serif;
+    background-color: #f4f7fd;
   }
   
   /* Estilos para o modo escuro */
   body.dark-mode {
-    background-color: #333;
+    background-color: #000000;
     color: #f0f0f0;
   }
   
@@ -90,18 +88,29 @@ body {
   
   /* ... Outros estilos ... */
 
+  .dark-mode #start-container,
+.dark-mode #game-container{
+    /* Estilos específicos para o modo escuro */
+    /* Por exemplo: */
+    background-color: #333;
+  }
+
   #start-container{
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
   }
   
   #game-container {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    border: 2px solid #ccc;
+    min-height: 400px;
+    border-radius: 5px;
+    background-color: #fff;
+
   }
   
   #choices {
@@ -109,23 +118,38 @@ body {
     flex-direction: column;
     justify-content: space-around;
     margin-top: 20px;
-    gap: 10px
+    border: 1px solid #000000;
+    border-radius: 8px;
+  }
+
+  #choices button{
+    border-bottom: 1px solid black;
+    border-radius: 0;
+  }
+
+  #choices button:last-child{
+    border-bottom: none;
   }
   
+  #choices button:hover{
+    background-color: #2196F3;
+  }
   
   button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #e6e7ee;
+    background-color: #f4f7fd;
     border: 0;
     border-radius: 6px;
+    font-family: 'Rubik', sans-serif;
   }
 
   #selectedChoice {
     font-size: 16px; /* Defina o tamanho da fonte desejado */
     color:#aeafc2; /* Defina a cor desejada para a escolha selecionada */
     font-style: italic;
+    text-align: left;
   }
 
   h1{
@@ -134,4 +158,8 @@ body {
 
   .menuzin{
     display: flex;
+  }
+
+  #story{
+    text-align: left;
   }
