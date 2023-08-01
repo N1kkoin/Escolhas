@@ -48,11 +48,14 @@ function startNewGame() {
         const selectedChoiceText = getLocalizedText('"' + choice.text + '"', '"' + choice.text + '"');
       
         // Atualiza a história com base na escolha feita
+        gameState.story = getLocalizedText(choice.next, choice.next);
+
         if (choice.next === "left") {
-            gameState.story = getLocalizedText(`Você encontra uma cabana abandonada.`, `You come across an abandoned cabin, ${gameState.playerName}.`);
+            gameState.story = getLocalizedText(`Você encontra uma cabana abandonada, ${gameState.playerName}.`, `You come across an abandoned cabin, ${gameState.playerName}.`);
             gameState.choices = [
-              { text: getLocalizedText(`Investigar a cabana.`, `Investigate the cabin.`), next: "investigate" },
-              { text: getLocalizedText(`Continuar a explorar a floresta.`, `Continue exploring the forest.`), next: "continue" }
+              { text: getLocalizedText(`Investigar a cabana, ${gameState.playerName}.`, `Investigate the cabin, ${gameState.playerName}.`), next: "investigate" },
+              { text: getLocalizedText(`Continuar a explorar a floresta, ${gameState.playerName}.`, `Continue exploring the forest, ${gameState.playerName}.`), next: "continue" },
+              { text: getLocalizedText(`Investigar a cabana, ${gameState.playerName}.`, `Investigate the cabin, ${gameState.playerName}.`), next: "investigate" },
             ];
           } else if (choice.next === "right") {
             gameState.story = getLocalizedText(`Você encontra um rio e uma ponte quebrada, ${gameState.playerName}.`, `You encounter a river and a broken bridge, ${gameState.playerName}.`);
@@ -72,60 +75,60 @@ function startNewGame() {
         const selectedChoiceDiv = document.getElementById("selectedChoice");
         selectedChoiceDiv.innerText = selectedChoiceText;
       }
-      
 
+      
+      
       function updateUI() {
         const storyElement = document.getElementById("story");
-        const choice1Btn = document.getElementById("choice1");
-        const choice2Btn = document.getElementById("choice2");
-        const choice3Btn = document.getElementById("choice3");
-        const choice4Btn = document.getElementById("choice4");
-        const choice5Btn = document.getElementById("choice5");
         const selectedChoiceDiv = document.getElementById("selectedChoice");
       
         // Limpa o conteúdo anterior antes de digitar o novo texto
         storyElement.innerHTML = "";
         selectedChoiceDiv.innerText = "";
-
-          // Oculta os botões antes de exibir o texto com efeito de digitação
-        choice1Btn.style.display = "none";
-        choice2Btn.style.display = "none";
-        choice3Btn.style.display = "none";
-        choice4Btn.style.display = "none";
-        choice5Btn.style.display = "none";
-              
+      
+        // Oculta os botões antes de exibir o texto com efeito de digitação
+        const choicesContainer = document.getElementById("choices");
+        choicesContainer.innerHTML = ""; // Limpa o conteúdo anterior dos botões de escolha
+      
         // Exibe a história com efeito de digitação
         typeText(storyElement, gameState.story, 30);
       
         // Espera até que a história tenha sido completamente exibida antes de mostrar as escolhas
         setTimeout(() => {
           // Exibe as escolhas com efeito de digitação
-        choice1Btn.innerText = gameState.choices[0].text;
-        choice2Btn.innerText = gameState.choices[1].text;
-
-        // Mostra os botões de escolha
-        choice1Btn.style.display = "block";
-        choice2Btn.style.display = "block";
+          gameState.choices.forEach((choice, index) => {
+            const choiceBtn = document.createElement("button");
+            choiceBtn.id = "choice" + (index + 1);
+            choiceBtn.onclick = () => makeChoice(index + 1);
+            choiceBtn.style.display = "none";
+            choiceBtn.innerText = choice.text;
+            choicesContainer.appendChild(choiceBtn);
+          });
+      
+          // Mostra os botões de escolha
+          const choiceBtns = choicesContainer.querySelectorAll("button");
+          choiceBtns.forEach((btn) => (btn.style.display = "block"));
         }, gameState.story.length * 30); // Aguarda o tempo necessário para digitar todo o texto da história
-
+      
         // Remove a classe "selected-choice" dos botões antes de atualizar
-        choice1Btn.classList.remove("selected-choice");
-        choice2Btn.classList.remove("selected-choice");
+        const choiceBtns = choicesContainer.querySelectorAll("button");
+        choiceBtns.forEach((btn) => btn.classList.remove("selected-choice"));
       
         // Verifica qual escolha está selecionada e exibe na div de escolha selecionada
-        if (gameState.currentChoice === 1) {
-          selectedChoiceDiv.innerText = gameState.choices[0].text;
-          choice1Btn.classList.add("selected-choice");
-        } else if (gameState.currentChoice === 2) {
-          selectedChoiceDiv.innerText = gameState.choices[1].text;
-          choice2Btn.classList.add("selected-choice");
+        if (gameState.currentChoice !== 0) {
+          const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
+          if (selectedChoiceBtn) {
+            selectedChoiceDiv.innerText = selectedChoiceBtn.innerText;
+            selectedChoiceBtn.classList.add("selected-choice");
+          }
         } else {
           selectedChoiceDiv.innerText = ""; // Caso nenhuma escolha seja selecionada, a div fica vazia
         }
-            
+      
         // Atualiza o texto do botão "Mudar Idioma" para refletir o idioma atual
         document.getElementById("languageBtn").innerText = getLocalizedText("Mudar Idioma", "Change Language");
       }
+      
       
     function toggleLanguage() {
       // Alterna entre os idiomas 'pt' (português) e 'en' (inglês)

@@ -127,16 +127,20 @@ body {
   }
 
   #choices button:last-child{
-    border-top: none;
     border-radius: 0 0 5px 5px;
+  }
+
+  /* Estilos para os botões do meio */
+  #choices button:not(:first-child):not(:last-child) {
+    border-bottom: none;
+
   }
 
   #choices button:first-child{
     border-radius: 5px 5px 0 0;
     border-bottom: none;
   }
-  
-  
+    
   #choices button:hover{
     background-color: #2196F3;
   }
