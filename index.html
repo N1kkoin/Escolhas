@@ -7,16 +7,18 @@
   </head>
 
   <body>
-    <button id="languageBtn" onclick="toggleLanguage()">Mudar Idioma</button>
-    
-    <div id="theme-switch">
-      <label class="switch">
-        <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
-        <span class="slider"></span>
-      </label>
-      <label for="dark-mode-toggle"></label>
-    </div>
 
+    <div class="menuzin">
+        <button id="languageBtn" onclick="toggleLanguage()">Mudar Idioma</button>
+        
+        <div id="theme-switch">
+        <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+            <span class="slider"></span>
+        </label>
+        <label for="dark-mode-toggle"></label>
+        </div>
+    </div>
     <div id="start-container">
       <h1>Text Adventure Game</h1>
       <button id="start" onclick="startNewGame()">Iniciar</button>

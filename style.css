@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
     transition: background-color 0.3s ease;
+    text-align: center;
   }
   
   /* Estilos para o modo claro */
@@ -90,6 +90,12 @@ body {
   
   /* ... Outros estilos ... */
   
+  #start-container{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+  }
   
   #game-container {
     max-width: 600px;
@@ -120,4 +126,12 @@ body {
     font-size: 16px; /* Defina o tamanho da fonte desejado */
     color:#aeafc2; /* Defina a cor desejada para a escolha selecionada */
     font-style: italic;
+  }
+
+  h1{
+    text-align: center;
+  }
+
+  .menuzin{
+    display: flex;
   }
