@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estilos para o modo claro */
+  body.light-mode {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  /* Estilos para o modo escuro */
+  body.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+  }
+  
+  /* Estilos para o switch de tema */
+  #theme-switch {
+    margin: 10px;
+  }
+  
+  #theme-switch label {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+  /* ... Outros estilos ... */
+  
+  /* Estilização do switch */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+  }
+  
+  /* Esconder o input padrão do switch */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* Estilização da alça do switch */
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    background-color: #ccc;
+    transition: 0.4s;
+  }
+  
+  /* Estilização da alça do switch no modo escuro */
+  .dark-mode .slider {
+    background-color: #888;
+  }
+  
+  /* Estilização do indicador do switch */
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: 0.4s;
+  }
+  
+  /* Estilização do indicador do switch no modo escuro */
+  .dark-mode .slider:before {
+    background-color: #333;
+  }
+  
+  /* Estilização do switch quando ativado */
+  input:checked+.slider {
+    background-color: #2196F3;
+  }
+  
+  /* Estilização do indicador do switch quando ativado */
+  input:checked+.slider:before {
+    transform: translateX(26px);
+  }
+  
+  /* ... Outros estilos ... */
+  
+  
+  #game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+  }
+  
+  #choices {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #F9BE00;
+    border: 0;
+    border-radius: 10px;
+  }
+  

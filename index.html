@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Text Adventure Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body>
+
+    <div id="theme-switch">
+      <label class="switch">
+        <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+        <span class="slider"></span>
+      </label>
+      <label for="dark-mode-toggle"></label>
+    </div>
+
+    <div id="start-container">
+      <h1>Text Adventure Game</h1>
+      <button id="start" onclick="startNewGame()">Iniciar</button>
+      <button id="continue" onclick="continueGame()">Continuar</button>
+    </div>
+
+    <div id="game-container" style="display: none;">
+      <h1>Text Adventure Game</h1>
+      <p id="story"></p>
+      <div id="choices">
+        <button id="choice1" onclick="makeChoice(1)"></button>
+        <button id="choice2" onclick="makeChoice(2)"></button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+
+</html>
