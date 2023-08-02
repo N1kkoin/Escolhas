@@ -129,7 +129,7 @@ body {
   }
 
   #choices button{
-    border: 2px solid #2196F3;
+    border: 2px solid #e5e5f7;
     border-radius: 0;
   }
 
@@ -149,7 +149,7 @@ body {
   }
     
   #choices button:hover{
-    background-color: #2196F3;
+    background-color: #e5e5f7;
   }
   
   button {
@@ -185,4 +185,12 @@ body {
 
   p{
     text-indent: 20px; /* Mover a primeira linha 20 pixels para a direita */
+  }
+
+  #languageBtn{
+    background-color: #fff;
+  }
+
+  .dark-mode #languageBtn{
+    background-color: #56565e;
   }
