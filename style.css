@@ -10,7 +10,7 @@ body {
   
   /* Estilos para o modo escuro */
   body.dark-mode {
-    background-color: #000000;
+    background-color: #3a3b41;
     color: #f0f0f0;
   }
   
@@ -23,9 +23,7 @@ body {
     margin-left: 5px;
     cursor: pointer;
   }
-  
-  /* ... Outros estilos ... */
-  
+
   /* Estilização do switch */
   .switch {
     position: relative;
@@ -108,9 +106,20 @@ body {
 .dark-mode #game-container{
     /* Estilos específicos para o modo escuro */
     /* Por exemplo: */
-    background-color: #333;
+    background-color: #2b2b33;
+  }
+  .dark-mode button{
+    background-color: #3a3b41;
+    color: #ffffff;
   }
 
+  .dark-mode #choices button{
+    border: 2px solid #56565e;
+  }
+
+  .dark-mode #choices button:hover{
+    background-color: #56565e;
+  }
   #choices {
     display: flex;
     flex-direction: column;
@@ -120,7 +129,7 @@ body {
   }
 
   #choices button{
-    border: 2px solid #2196F3;
+    border: 2px solid #e5e5f7;
     border-radius: 0;
   }
 
@@ -140,7 +149,7 @@ body {
   }
     
   #choices button:hover{
-    background-color: #2196F3;
+    background-color: #e5e5f7;
   }
   
   button {
@@ -158,6 +167,8 @@ body {
     color:#aeafc2; /* Defina a cor desejada para a escolha selecionada */
     font-style: italic;
     text-align: left;
+    text-indent: 20px; /* Mover a primeira linha 20 pixels para a direita */
+
   }
 
   h1{
@@ -170,4 +181,16 @@ body {
 
   #story{
     text-align: left;
+  }
+
+  p{
+    text-indent: 20px; /* Mover a primeira linha 20 pixels para a direita */
+  }
+
+  #languageBtn{
+    background-color: #fff;
+  }
+
+  .dark-mode #languageBtn{
+    background-color: #56565e;
   }

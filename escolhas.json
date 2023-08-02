@@ -1,8 +1,8 @@
 {
   "start": {
     "story": {
-      "pt": "Você está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita, {{playerName}}?",
-      "en": "You are in a dark forest. Do you want to go left or right, {{playerName}}?"
+      "pt": "<p><b>Você</b> está em uma floresta sombria. </p><p>A densa vegetação ao redor cria uma atmosfera misteriosa e intrigante. O silêncio é quebrado apenas pelo som dos galhos se movendo ao vento. </p><p>Você quer seguir para a esquerda ou para a direita, {{playerName}}?</p>",
+      "en": "<p><b>You</b> are in a dark forest. </p><p>The dense vegetation creates a mysterious and intriguing atmosphere. The silence is broken only by the sound of branches moving in the wind. </p><p>Do you want to go left or right, {{playerName}}?</p>"
     },
     "choices": [
       {
