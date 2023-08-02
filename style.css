@@ -197,8 +197,14 @@ body {
     background-color: #56565e;
   }
 
-  #showMenuBtn{
+  .dark-mode #showMenuBtn{
     background-color: #2b2b33;
+    margin-top: 10px;
+
+  }
+
+  #showMenuBtn{
+    background-color: white;
     margin-top: 10px;
 
   }
