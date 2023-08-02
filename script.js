@@ -62,6 +62,7 @@ function makeChoice(choiceNumber) {
 
   // Obtém a próxima etapa com base na escolha feita pelo jogador
   const nextStep = choice.next;
+  
 
   // Carrega as novas escolhas e a história da próxima etapa do arquivo JSON
   fetchChoices()
@@ -89,9 +90,16 @@ function updateUI() {
   const storyElement = document.getElementById("story");
   const selectedChoiceDiv = document.getElementById("selectedChoice");
 
-  // Limpa o conteúdo anterior antes de digitar o novo texto
-  storyElement.innerHTML = "";
-  selectedChoiceDiv.innerText = "";
+  // Verifica qual escolha está selecionada
+  const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
+  if (selectedChoiceBtn) {
+    const choiceText = selectedChoiceBtn.innerText;
+    selectedChoiceBtn.classList.add("selected-choice");
+    selectedChoiceDiv.innerText = `"` + choiceText + `"`;
+  } else {
+    selectedChoiceDiv.innerText = ""; // Caso nenhuma escolha seja selecionada, a div fica vazia
+  }
+
 
   // Oculta os botões antes de exibir o texto com efeito de digitação
   const choicesContainer = document.getElementById("choices");
@@ -118,17 +126,6 @@ function updateUI() {
 
     // Remove a classe "selected-choice" dos botões antes de atualizar
     choiceBtns.forEach((btn) => btn.classList.remove("selected-choice"));
-
-    // Verifica qual escolha está selecionada e exibe na div de escolha selecionada
-    if (gameState.currentChoice !== 0) {
-      const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
-      if (selectedChoiceBtn) {
-        selectedChoiceDiv.innerText = selectedChoiceBtn.innerText;
-        selectedChoiceBtn.classList.add("selected-choice");
-      }
-    } else {
-      selectedChoiceDiv.innerText = ""; // Caso nenhuma escolha seja selecionada, a div fica vazia
-    }
 
     // Atualiza o texto do botão "Mudar Idioma" para refletir o idioma atual
     document.getElementById("languageBtn").innerText = getLocalizedText("Mudar Idioma", "Change Language");
