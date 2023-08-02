@@ -4,21 +4,28 @@
   <head>
     <title>Text Adventure Game</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
   </head>
 
   <body>
 
-    <div class="menuzin">
-        <button id="languageBtn" onclick="toggleLanguage()">Mudar Idioma</button>
-        
+    <button id="showMenuBtn" onclick="toggleMenu()"><i class="fa fa-bars"></i>
+    </button>
+
+    <div class="menuzin" id="menuGroup">
+        <!-- O conteúdo do menuzin vem aqui -->
+        <button id="languageBtn">Mudar Idioma</button>
+    
         <div id="theme-switch">
-        <label class="switch">
-            <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
-            <span class="slider"></span>
-        </label>
-        <label for="dark-mode-toggle"></label>
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                <span class="slider"></span>
+            </label>
+            <label for="dark-mode-toggle"></label>
         </div>
     </div>
+    
     <div id="start-container">
       <h1>Text Adventure Game</h1>
       <button id="start" onclick="startNewGame()">Iniciar</button>

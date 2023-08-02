@@ -245,3 +245,12 @@ function typeText(element, text, interval) {
     type();
   }
   
+
+  function toggleMenu() {
+    var menuGroup = document.getElementById("menuGroup");
+    if (menuGroup.style.display === "none") {
+        menuGroup.style.display = "flex";
+    } else {
+        menuGroup.style.display = "none";
+    }
+}
