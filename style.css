@@ -176,7 +176,9 @@ body {
   }
 
   .menuzin{
-    display: flex;
+    display: none; /* Inicia escondido */
+    justify-content: center;
+    margin: 10px;
   }
 
   #story{
@@ -193,4 +195,10 @@ body {
 
   .dark-mode #languageBtn{
     background-color: #56565e;
+  }
+
+  #showMenuBtn{
+    background-color: #2b2b33;
+    margin-top: 10px;
+
   }
