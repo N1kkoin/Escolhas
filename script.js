@@ -100,7 +100,10 @@ function updateUI() {
       en: choice.text.en.replace(/{{playerName}}/g, gameState.playerName),
     };
   });
-  
+
+    // Exibe a história com o conteúdo HTML renderizado
+    storyElement.innerHTML = gameState.story;
+
   // Verifica qual escolha está selecionada
   const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
   if (selectedChoiceBtn) {
