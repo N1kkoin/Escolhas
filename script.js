@@ -120,7 +120,7 @@ function updateUI() {
   choicesContainer.innerHTML = ""; // Limpa o conteúdo anterior dos botões de escolha
 
   // Exibe a história com efeito de digitação
-  typeText(storyElement, gameState.story, 30);
+  typeText(storyElement, gameState.story, 20);
 
   // Espera até que a história tenha sido completamente exibida antes de mostrar as escolhas
   setTimeout(() => {
@@ -141,8 +141,6 @@ function updateUI() {
     // Remove a classe "selected-choice" dos botões antes de atualizar
     choiceBtns.forEach((btn) => btn.classList.remove("selected-choice"));
 
-    // Atualiza o texto do botão "Mudar Idioma" para refletir o idioma atual
-    document.getElementById("languageBtn").innerText = getLocalizedText("Mudar Idioma", "Change Language");
   }, gameState.story.length * 30); // Aguarda o tempo necessário para digitar todo o texto da história
 }
 
@@ -159,6 +157,9 @@ function toggleLanguage() {
     
     // Salva o idioma selecionado no armazenamento local
     localStorage.setItem("textAdventureLanguage", currentLanguage);
+
+    // Atualiza o texto do botão "Mudar Idioma" para refletir o idioma atual
+    document.getElementById("languageBtn").innerText = getLocalizedText("PT", "EN");
 
     // Atualiza o texto do jogo com o novo idioma selecionado
     gameState.story = getLocalizedText(gameState.story, gameState.story);
