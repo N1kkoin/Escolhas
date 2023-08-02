@@ -236,10 +236,10 @@ body {
     margin: 0 auto; 
     padding: 10px; 
 }
-
-@media screen and (max-width: 600px) {
+/* 
+@media (max-width: 600px) {
   html {
-    font-size: 250%;  /* Aumenta o tamanho da fonte em 20% quando a largura da tela é de 480 pixels ou mais. */
+    font-size: 250%;  
   }
 
   button{
@@ -256,7 +256,6 @@ body {
   .tudomenu{
     height: 150px;
   }
-  /* Estilização da alça do switch */
   .slider, .switch input, .switch{
     transform: scale(1.8);
 
@@ -266,3 +265,4 @@ body {
     left: 70px;
   }
 }
+*/
