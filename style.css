@@ -237,7 +237,7 @@ body {
     padding: 10px; 
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   html {
     font-size: 250%;  /* Aumenta o tamanho da fonte em 20% quando a largura da tela é de 480 pixels ou mais. */
   }
