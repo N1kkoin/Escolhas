@@ -2,23 +2,30 @@ let gameState = null;
 let currentLanguage = "pt"; // Defina o idioma padrão como português
 let isGameStarted = false; // Defina esta variável como false inicialmente
 
-function startNewGame() {
-    isGameStarted = true;
-// Defina o estado inicial do jogo para um novo jogo
+async function startNewGame() {
+  isGameStarted = true;
+
+  try {
+    // Carrega as escolhas iniciais do arquivo escolhas.json
+    const choicesData = await fetchChoices();
+    const startChoices = choicesData.start.choices;
+
+    // Define o estado inicial do jogo com as escolhas iniciais e a história
     gameState = {
-        playerName: getPlayerName(), // Armazena o nome do jogador
-        story: getLocalizedText("<b>Você</b> está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita?", "You are in a dark forest. Do you want to go left or right?"),
-        choices: [
-        { text: getLocalizedText("Esquerda", "Left"), next: "left" },
-        { text: getLocalizedText("Direita", "Right"), next: "right" }
-        ],
-        currentChoice: 0 // Inicialmente, nenhuma escolha está selecionada (0 é o valor padrão)
+      playerName: getPlayerName(),
+      story: getLocalizedText(choicesData.start.story.pt, choicesData.start.story.en),
+      choices: startChoices,
+      currentChoice: 0
     };
-    
-      updateUI();
-      document.getElementById("start-container").style.display = "none";
-      document.getElementById("game-container").style.display = "block";
-    }
+
+    updateUI();
+    document.getElementById("start-container").style.display = "none";
+    document.getElementById("game-container").style.display = "block";
+  } catch (error) {
+    console.error('Erro ao carregar as escolhas iniciais:', error);
+  }
+}
+
 
     function continueGame() {
         isGameStarted = true;
@@ -77,9 +84,6 @@ function makeChoice(choiceNumber) {
       console.error('Erro ao carregar escolhas.json:', error);
     });
 }
-
-
-      
       
 function updateUI() {
   const storyElement = document.getElementById("story");
