@@ -1,6 +1,7 @@
 let gameState = [];
 let currentLanguage = "pt"; // Defina o idioma padrão como português
 let isGameStarted = false; // Defina esta variável como false inicialmente
+let gameData; // A constante gameData será preenchida com o conteúdo do arquivo JSON.
 
 // Função para obter o texto localizado com base no idioma atual
 function getLocalizedText(ptText, enText) {
@@ -8,36 +9,6 @@ function getLocalizedText(ptText, enText) {
     return language === "pt" ? ptText : enText;
   }
   
-// Defina o objeto com as informações do jogo
-const gameData = {
-  scenarios: {
-    start: {
-      story: getLocalizedText("<b>Você</b> está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita?", "You are in a dark forest. Do you want to go left or right?"),
-      choices: [
-        { text: getLocalizedText("Esquerda", "Left"), next: "left" },
-        { text: getLocalizedText("Direita", "Right"), next: "right" }
-      ]
-    },
-    left: {
-      story: getLocalizedText(`Você encontra uma cabana abandonada, ${gameState.playerName}.`, `You come across an abandoned cabin, ${gameState.playerName}.`),
-      choices: [
-        { text: getLocalizedText(`Investigar a cabana, ${gameState.playerName}.`, `Investigate the cabin, ${gameState.playerName}.`), next: "investigate" },
-        { text: getLocalizedText(`Continuar a explorar a floresta, ${gameState.playerName}.`, `Continue exploring the forest, ${gameState.playerName}.`), next: "continue" },
-        { text: getLocalizedText(`Investigar a cabana, ${gameState.playerName}.`, `Investigate the cabin, ${gameState.playerName}.`), next: "investigate" },
-      ]
-    },
-    right: {
-      story: getLocalizedText(`Você encontra um rio e uma ponte quebrada, ${gameState.playerName}.`, `You encounter a river and a broken bridge, ${gameState.playerName}.`),
-      choices: [
-        { text: getLocalizedText(`Tentar atravessar nadando, ${gameState.playerName}.`, `Try to swim across, ${gameState.playerName}.`), next: "swim" },
-        { text: getLocalizedText(`Procurar outra rota, ${gameState.playerName}.`, `Look for another route, ${gameState.playerName}.`), next: "findAnotherRoute" }
-      ]
-    },
-    // Adicione mais cenários e caminhos conforme necessário
-  },
-  currentScenario: "start" // Cenário inicial
-};
-
 function startNewGame() {
   isGameStarted = true;
   gameState = {
@@ -45,10 +16,19 @@ function startNewGame() {
     currentChoice: 0
   };
   
-  loadScenario(gameData.currentScenario);
-  updateUI();
-  document.getElementById("start-container").style.display = "none";
-  document.getElementById("game-container").style.display = "block";
+  fetch("escolhas.json")
+    .then(response => response.json())
+    .then(data => {
+      gameData = data;
+      loadScenario(gameData.currentScenario);
+      updateUI();
+      document.getElementById("start-container").style.display = "none";
+      document.getElementById("game-container").style.display = "block";
+    })
+    .catch(error => {
+      console.error("Erro ao carregar o arquivo JSON:", error);
+      // Lógica para lidar com o erro, se necessário.
+    });
 }
 
 function continueGame() {
