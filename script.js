@@ -90,6 +90,17 @@ function updateUI() {
   const storyElement = document.getElementById("story");
   const selectedChoiceDiv = document.getElementById("selectedChoice");
 
+  // Substitui a tag {{playerName}} pelo nome do jogador na história
+  gameState.story = gameState.story.replace(/{{playerName}}/g, gameState.playerName);
+  
+  // Substitui a tag {{playerName}} nas opções de escolha
+  gameState.choices.forEach((choice) => {
+    choice.text = {
+      pt: choice.text.pt.replace(/{{playerName}}/g, gameState.playerName),
+      en: choice.text.en.replace(/{{playerName}}/g, gameState.playerName),
+    };
+  });
+  
   // Verifica qual escolha está selecionada
   const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
   if (selectedChoiceBtn) {
