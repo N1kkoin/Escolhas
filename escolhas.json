@@ -1,37 +1,126 @@
 {
-    "scenarios": {
-      "start": {
-        "story": {
-          "en": "You are in a dark forest. Do you want to go left or right?",
-          "pt": "<b>Você</b> está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita?"
-        },
-        "choices": [
-          { "text": { "en": "Left", "pt": "Esquerda" }, "next": "left" },
-          { "text": { "en": "Right", "pt": "Direita" }, "next": "right" }
-        ]
-      },
-      "left": {
-        "story": {
-          "en": "You come across an abandoned cabin, ${gameState.playerName}.",
-          "pt": "Você encontra uma cabana abandonada, ${gameState.playerName}."
-        },
-        "choices": [
-          { "text": { "en": "Investigate the cabin, ${gameState.playerName}.", "pt": "Investigar a cabana, ${gameState.playerName}." }, "next": "investigate" },
-          { "text": { "en": "Continue exploring the forest, ${gameState.playerName}.", "pt": "Continuar a explorar a floresta, ${gameState.playerName}." }, "next": "continue" },
-          { "text": { "en": "Investigate the cabin, ${gameState.playerName}.", "pt": "Investigar a cabana, ${gameState.playerName}." }, "next": "investigate" }
-        ]
-      },
-      "right": {
-        "story": {
-          "en": "You encounter a river and a broken bridge, ${gameState.playerName}.",
-          "pt": "Você encontra um rio e uma ponte quebrada, ${gameState.playerName}."
-        },
-        "choices": [
-          { "text": { "en": "Try to swim across, ${gameState.playerName}.", "pt": "Tentar atravessar nadando, ${gameState.playerName}." }, "next": "swim" },
-          { "text": { "en": "Look for another route, ${gameState.playerName}.", "pt": "Procurar outra rota, ${gameState.playerName}." }, "next": "findAnotherRoute" }
-        ]
-      }
+  "start": {
+    "story": {
+      "pt": "Você está em uma floresta sombria. Você quer seguir para a esquerda ou para a direita, {{playerName}}?",
+      "en": "You are in a dark forest. Do you want to go left or right, {{playerName}}?"
     },
-    "currentScenario": "start"
+    "choices": [
+      {
+        "text": {
+          "pt": "Esquerda",
+          "en": "Left"
+        },
+        "next": "left"
+      },
+      {
+        "text": {
+          "pt": "Direita",
+          "en": "Right"
+        },
+        "next": "right"
+      }
+    ]
+  },
+  "left": {
+    "story": {
+      "pt": "Você encontra uma cabana abandonada, {{playerName}}.",
+      "en": "You come across an abandoned cabin, {{playerName}}."
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Investigar a cabana, {{playerName}}.",
+          "en": "Investigate the cabin, {{playerName}}."
+        },
+        "next": "investigate"
+      },
+      {
+        "text": {
+          "pt": "Continuar a explorar a floresta, {{playerName}}.",
+          "en": "Continue exploring the forest, {{playerName}}."
+        },
+        "next": "continue"
+      }
+    ]
+  },
+  "right": {
+    "story": {
+      "pt": "Você encontra um rio e uma ponte quebrada, {{playerName}}.",
+      "en": "You encounter a river and a broken bridge, {{playerName}}."
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Tentar atravessar nadando, {{playerName}}.",
+          "en": "Try to swim across, {{playerName}}."
+        },
+        "next": "swim"
+      },
+      {
+        "text": {
+          "pt": "Procurar outra rota, {{playerName}}.",
+          "en": "Look for another route, {{playerName}}."
+        },
+        "next": "findAnotherRoute"
+      }
+    ]
+  },
+  "investigate": {
+    "story": {
+      "pt": "Você entra na cabana e encontra uma mesa com alguns objetos antigos. Há também uma escada que desce para um porão escuro. O que você quer fazer?",
+      "en": "You enter the cabin and find a table with some old objects. There's also a staircase leading down to a dark basement. What do you want to do?"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Investigar a mesa",
+          "en": "Investigate the table"
+        },
+        "next": "investigateTable"
+      },
+      {
+        "text": {
+          "pt": "Explorar o porão",
+          "en": "Explore the basement"
+        },
+        "next": "exploreBasement"
+      },
+      {
+        "text": {
+          "pt": "Voltar para fora",
+          "en": "Go back outside"
+        },
+        "next": "goOutside"
+      }
+    ]
+  },
+  "continue": {
+    "story": {
+      "pt": "Você decide continuar sua exploração na floresta sombria. Enquanto caminha, você encontra uma trilha estreita que parece ser pouco usada. O que você quer fazer?",
+      "en": "You decide to continue your exploration in the dark forest. As you walk, you come across a narrow trail that seems to be less traveled. What do you want to do?"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Seguir a trilha",
+          "en": "Follow the trail"
+        },
+        "next": "followTrail"
+      },
+      {
+        "text": {
+          "pt": "Continuar na rota original",
+          "en": "Continue on the original route"
+        },
+        "next": "continueOriginalRoute"
+      },
+      {
+        "text": {
+          "pt": "Voltar para a bifurcação",
+          "en": "Go back to the fork"
+        },
+        "next": "goBackToFork"
+      }
+    ]
   }
-  
+}
