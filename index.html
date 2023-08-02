@@ -9,35 +9,35 @@
   </head>
 
   <body>
-
-    <button id="showMenuBtn" onclick="toggleMenu()"><i class="fa fa-bars"></i>
-    </button>
-
-    <div class="menuzin" id="menuGroup">
-        <!-- O conteúdo do menuzin vem aqui -->
-        <button id="languageBtn">Mudar Idioma</button>
-    
-        <div id="theme-switch">
-            <label class="switch">
-                <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
-                <span class="slider"></span>
-            </label>
-            <label for="dark-mode-toggle"></label>
+    <div class="tudojogo">
+      
+      <div class="tudomenu">
+        <button id="showMenuBtn" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
+        <div class="menuzin" id="menuGroup">
+            <button id="languageBtn" onclick="toggleLanguage()"><i class="fa fa-globe"></i></button>
+            <div id="theme-switch">
+                <label class="switch">
+                    <input type="checkbox" id="dark-mode-toggle" onclick="toggleDarkMode()">
+                    <span class="slider"></span>
+                </label>
+                <label for="dark-mode-toggle"></label>
+            </div>
         </div>
-    </div>
-    
-    <div id="start-container">
-      <h1>Text Adventure Game</h1>
-      <button id="start" onclick="startNewGame()">Iniciar</button>
-      <button id="continue" onclick="continueGame()">Continuar</button>
-    </div>
+      </div>
+      
+      <div id="start-container">
+        <h1>Text Adventure Game</h1>
+        <button id="start" onclick="startNewGame()">Iniciar</button>
+        <button id="continue" onclick="continueGame()">Continuar</button>
+      </div>
 
-    <div id="game-container" style="display: none;">
-        <div id="selectedChoice"></div>
-      <p id="story"></p>
-      <div id="choices">
-        <button id="choice1" onclick="makeChoice(1)"></button>
-        <button id="choice2" onclick="makeChoice(2)"></button>
+      <div id="game-container" style="display: none;">
+          <div id="selectedChoice"></div>
+        <p id="story"></p>
+        <div id="choices">
+          <button id="choice1" onclick="makeChoice(1)"></button>
+          <button id="choice2" onclick="makeChoice(2)"></button>
+        </div>
       </div>
     </div>
 
