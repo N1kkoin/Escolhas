@@ -141,7 +141,7 @@ function updateUI() {
     // Remove a classe "selected-choice" dos botões antes de atualizar
     choiceBtns.forEach((btn) => btn.classList.remove("selected-choice"));
 
-  }, gameState.story.length * 30); // Aguarda o tempo necessário para digitar todo o texto da história
+  }, gameState.story.length * 20); // Aguarda o tempo necessário para digitar todo o texto da história
 }
 
       
