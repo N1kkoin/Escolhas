@@ -22,14 +22,14 @@ body {
     transition: background-color 0.3s ease;
     text-align: center;
     font-family: 'Rubik', sans-serif;
-    background-color: #f4f7fd;
+    background-color: #fff;
     margin: 0;
     padding: 0;
   }
   
   /* Estilos para o modo escuro */
   body.dark-mode {
-    background-color: #3a3b41;
+    background-color: #0f0f0f;
     color: #f0f0f0;
   }
   
@@ -108,7 +108,7 @@ body {
     margin-top: 10px;
     padding: 20px;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #f4f7fd;
   }
   
   #game-container {
@@ -116,26 +116,26 @@ body {
     padding: 20px;
     height: 100%;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #f4f7fd;
   }
   
   .dark-mode #start-container,
 .dark-mode #game-container{
     /* Estilos específicos para o modo escuro */
     /* Por exemplo: */
-    background-color: #2b2b33;
+    background-color: #212121;
   }
   .dark-mode button{
-    background-color: #3a3b41;
-    color: #ffffff;
+    background-color: #2e2e30;
+    color: #84848b;
   }
 
   .dark-mode #choices button{
-    border: 2px solid #56565e;
+    border: 2px solid #212121;
   }
 
   .dark-mode #choices button:hover{
-    background-color: #56565e;
+    background-color: #3b3b3e;
   }
   #choices {
     display: flex;
@@ -146,7 +146,7 @@ body {
   }
 
   #choices button{
-    border: 2px solid #e5e5f7;
+    border: 2px solid #f4f7fd;
     border-radius: 0;
   }
 
@@ -166,26 +166,26 @@ body {
   }
     
   #choices button:hover{
-    background-color: #e5e5f7;
+    background-color: #dcdfe4;
   }
   
   button {
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
-    background-color: #f4f7fd;
+    background-color: #e9ecf2;
     border: 0;
     border-radius: 6px;
     font-family: 'Rubik', sans-serif;
+    color: #6d6d73;
   }
 
   #selectedChoice {
     font-size: 1rem;
-    color:#aeafc2; /* Defina a cor desejada para a escolha selecionada */
+    color:#6d6d73; /* Defina a cor desejada para a escolha selecionada */
     font-style: italic;
     text-align: left;
     text-indent: 20px; /* Mover a primeira linha 20 pixels para a direita */
-
   }
 
   h1{
@@ -205,20 +205,20 @@ body {
   }
 
   #languageBtn{
-    background-color: #fff;
+    background-color: #f4f7fd;
     height: 50px;
   }
 
   .dark-mode #languageBtn{
-    background-color: #2b2b33;
+    background-color: #212121;
   }
 
   .dark-mode #showMenuBtn{
-    background-color: #2b2b33;
+    background-color: #212121;
   }
 
   #showMenuBtn{
-    background-color: white;
+    background-color: #f4f7fd;
     margin-right: 10px;
     display: block;
   }
