@@ -103,16 +103,21 @@ function updateUI() {
 
     // Exibe a história com o conteúdo HTML renderizado
     storyElement.innerHTML = gameState.story;
-
-  // Verifica qual escolha está selecionada
-  const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
-  if (selectedChoiceBtn) {
-    const choiceText = selectedChoiceBtn.innerText;
+// Verifica qual escolha está selecionada
+const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
+if (selectedChoiceBtn) {
+  const choiceText = selectedChoiceBtn.innerText;
+  if (choiceText.trim() === "▶") {
+    // Se a opção selecionada tiver o texto "▶", não exibiremos nada na div
+    selectedChoiceDiv.innerText = "";
+  } else {
     selectedChoiceBtn.classList.add("selected-choice");
     selectedChoiceDiv.innerText = `"` + choiceText + `"`;
-  } else {
-    selectedChoiceDiv.innerText = ""; // Caso nenhuma escolha seja selecionada, a div fica vazia
   }
+} else {
+  selectedChoiceDiv.innerText = ""; // Caso nenhuma escolha seja selecionada, a div fica vazia
+}
+
 
 
   // Oculta os botões antes de exibir o texto com efeito de digitação
@@ -254,3 +259,4 @@ function typeText(element, text, interval) {
         menuGroup.style.display = "none";
     }
 }
+
