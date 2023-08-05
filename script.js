@@ -260,3 +260,18 @@ function typeText(element, text, interval) {
     }
 }
 
+
+const achievements = [
+  {
+    id: 'achievement1',
+    title: 'Conquistador Iniciante',
+    description: 'Conquiste a primeira escolha no jogo.'
+  },
+  {
+    id: 'achievement2',
+    title: 'Mestre das Escolhas',
+    description: 'Conquiste todas as escolhas possíveis no jogo.'
+  },
+  // Adicione mais Achievements conforme necessário
+];
+

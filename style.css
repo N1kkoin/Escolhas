@@ -209,21 +209,12 @@ body {
     height: 50px;
   }
 
-  .dark-mode #languageBtn{
+ 
+  .dark-mode #showMenuBtn, .dark-mode #showFullTextBtn, .dark-mode #languageBtn{
     background-color: #212121;
   }
 
-  .dark-mode #showMenuBtn{
-    background-color: #212121;
-  }
-
-  #showMenuBtn{
-    background-color: #f4f7fd;
-    margin-right: 10px;
-    display: block;
-  }
-
-  #showFullTextBtn{
+  #showMenuBtn, #showFullTextBtn{
     background-color: #f4f7fd;
     margin-right: 10px;
     display: block;
