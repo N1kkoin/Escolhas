@@ -223,13 +223,18 @@ body {
     display: block;
   }
 
+  #showFullTextBtn{
+    background-color: #f4f7fd;
+    margin-right: 10px;
+    display: block;
+  }
+
   .tudomenu{
     display: flex;
     height: 50px;
     font-size: 1rem;
 
   }
-
   .tudojogo {
     max-width: 900px;
     margin: 0 auto; 
