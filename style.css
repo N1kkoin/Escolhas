@@ -231,33 +231,3 @@ body {
     margin: 0 auto; 
     padding: 10px; 
 }
-/* 
-@media (max-width: 600px) {
-  html {
-    font-size: 250%;  
-  }
-
-  button{
-    padding: 4%;
-  }
-
-  #game-container, #start-container{
-    padding: 6%;
-  }
-  #languageBtn{
-    height: 150px;
-    width: 150px;
-  }
-  .tudomenu{
-    height: 150px;
-  }
-  .slider, .switch input, .switch{
-    transform: scale(1.8);
-
-  }
-  .switch{
-    margin-top: 50px;
-    left: 70px;
-  }
-}
-*/

@@ -168,9 +168,12 @@ function toggleLanguage() {
 
     // Atualiza o texto do jogo com o novo idioma selecionado
     gameState.story = getLocalizedText(gameState.story, gameState.story);
-    updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
+    
+    // Atualiza a interface do usuário
+    updateUI();
   }
 }
+
 
     // Função para alternar entre o modo claro e o modo escuro
     function toggleDarkMode() {
@@ -217,38 +220,39 @@ function toggleLanguage() {
       
 // ${gameState.playerName}
       
+let typingTimeout;
 
 function typeText(element, text, interval) {
-    let index = 0;
-    const tempElement = document.createElement("span");
-    element.innerHTML = ""; // Limpa o conteúdo anterior antes de digitar o novo texto
-  
-    function type() {
-      const char = text.charAt(index);
-  
-      if (char === "<") {
-        // Se encontrar uma tag HTML, avança até encontrar o fechamento da tag ">"
-        let closingTagIndex = text.indexOf(">", index);
-        if (closingTagIndex !== -1) {
-          closingTagIndex++; // Avança para o próximo caractere após ">"
-          tempElement.innerHTML = text.substring(0, closingTagIndex);
-          element.innerHTML = tempElement.innerHTML;
-          index = closingTagIndex;
-        }
-      } else {
-        // Se não for uma tag HTML, exibe a letra normalmente
-        tempElement.innerHTML = text.substring(0, index + 1);
+  let index = 0;
+  const tempElement = document.createElement("span");
+  element.innerHTML = ""; // Limpa o conteúdo anterior antes de digitar o novo texto
+
+  function type() {
+    const char = text.charAt(index);
+
+    if (char === "<") {
+      // Se encontrar uma tag HTML, avança até encontrar o fechamento da tag ">"
+      let closingTagIndex = text.indexOf(">", index);
+      if (closingTagIndex !== -1) {
+        closingTagIndex++; // Avança para o próximo caractere após ">"
+        tempElement.innerHTML = text.substring(0, closingTagIndex);
         element.innerHTML = tempElement.innerHTML;
-        index++;
+        index = closingTagIndex;
       }
-  
-      if (index < text.length) {
-        setTimeout(type, interval);
-      }
+    } else {
+      // Se não for uma tag HTML, exibe a letra normalmente
+      tempElement.innerHTML = text.substring(0, index + 1);
+      element.innerHTML = tempElement.innerHTML;
+      index++;
     }
-  
-    type();
+
+    if (index < text.length) {
+      typingTimeout = setTimeout(type, interval);
+    }
   }
+
+  type();
+}
   
 
   function toggleMenu() {
@@ -260,18 +264,39 @@ function typeText(element, text, interval) {
     }
 }
 
+  // Variável para rastrear se os botões de escolha já foram adicionados
+  let areChoiceButtonsAdded = false;
 
-const achievements = [
-  {
-    id: 'achievement1',
-    title: 'Conquistador Iniciante',
-    description: 'Conquiste a primeira escolha no jogo.'
-  },
-  {
-    id: 'achievement2',
-    title: 'Mestre das Escolhas',
-    description: 'Conquiste todas as escolhas possíveis no jogo.'
-  },
-  // Adicione mais Achievements conforme necessário
-];
+  const showFullTextBtn = document.getElementById("showFullTextBtn");
+  showFullTextBtn.addEventListener("click", function () {
+    // Interrompe a animação de digitação instantaneamente
+    clearTimeout(typingTimeout);
+
+    // Exibe todo o texto imediatamente
+    const storyElement = document.getElementById("story");
+    storyElement.innerHTML = gameState.story;
+
+    // Verifica se os botões de escolha já foram adicionados
+    if (!areChoiceButtonsAdded) {
+      const choicesContainer = document.getElementById("choices");
+      choicesContainer.innerHTML = ""; // Limpa o conteúdo anterior dos botões de escolha
+
+      gameState.choices.forEach((choice, index) => {
+        const choiceBtn = document.createElement("button");
+        choiceBtn.id = "choice" + (index + 1);
+        choiceBtn.onclick = () => makeChoice(index + 1);
+        choiceBtn.innerText = getLocalizedText(choice.text.pt, choice.text.en); // Mostra o texto da opção no idioma selecionado
+        choicesContainer.appendChild(choiceBtn);
+      });
+
+      // Adiciona a classe "selected-choice" ao botão selecionado (caso exista)
+      const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
+      if (selectedChoiceBtn) {
+        selectedChoiceBtn.classList.add("selected-choice");
+      }
+
+      // Define a flag como true para indicar que os botões foram adicionados
+      areChoiceButtonsAdded = true;
+    }
+  });
 
