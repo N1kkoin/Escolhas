@@ -168,9 +168,12 @@ function toggleLanguage() {
 
     // Atualiza o texto do jogo com o novo idioma selecionado
     gameState.story = getLocalizedText(gameState.story, gameState.story);
-    updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
+    
+    // Atualiza a interface do usuário
+    updateUI();
   }
 }
+
 
     // Função para alternar entre o modo claro e o modo escuro
     function toggleDarkMode() {
@@ -261,41 +264,39 @@ function typeText(element, text, interval) {
     }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
   // Variável para rastrear se os botões de escolha já foram adicionados
   let areChoiceButtonsAdded = false;
 
-  // Event listener para o botão "showFullTextBtn"
   const showFullTextBtn = document.getElementById("showFullTextBtn");
   showFullTextBtn.addEventListener("click", function () {
     // Interrompe a animação de digitação instantaneamente
     clearTimeout(typingTimeout);
-    if (!isGameStarted) {
-      alert(getLocalizedText("No jogo, o botão exibe o texto rapidamente.", "You cannot change the language after the game has started."));
-      return
-    }
+
     // Exibe todo o texto imediatamente
     const storyElement = document.getElementById("story");
     storyElement.innerHTML = gameState.story;
 
-    // Exibe as escolhas sem efeito de digitação
-    const choicesContainer = document.getElementById("choices");
-    choicesContainer.innerHTML = ""; // Limpa o conteúdo anterior dos botões de escolha
+    // Verifica se os botões de escolha já foram adicionados
+    if (!areChoiceButtonsAdded) {
+      const choicesContainer = document.getElementById("choices");
+      choicesContainer.innerHTML = ""; // Limpa o conteúdo anterior dos botões de escolha
 
-    gameState.choices.forEach((choice, index) => {
-      const choiceBtn = document.createElement("button");
-      choiceBtn.id = "choice" + (index + 1);
-      choiceBtn.onclick = () => makeChoice(index + 1);
-      choiceBtn.innerText = getLocalizedText(choice.text.pt, choice.text.en); // Mostra o texto da opção no idioma selecionado
-      choicesContainer.appendChild(choiceBtn);
-    });
+      gameState.choices.forEach((choice, index) => {
+        const choiceBtn = document.createElement("button");
+        choiceBtn.id = "choice" + (index + 1);
+        choiceBtn.onclick = () => makeChoice(index + 1);
+        choiceBtn.innerText = getLocalizedText(choice.text.pt, choice.text.en); // Mostra o texto da opção no idioma selecionado
+        choicesContainer.appendChild(choiceBtn);
+      });
 
-    // Adiciona a classe "selected-choice" ao botão selecionado (caso exista)
-    const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
-    if (selectedChoiceBtn) {
-      selectedChoiceBtn.classList.add("selected-choice");
+      // Adiciona a classe "selected-choice" ao botão selecionado (caso exista)
+      const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
+      if (selectedChoiceBtn) {
+        selectedChoiceBtn.classList.add("selected-choice");
+      }
+
+      // Define a flag como true para indicar que os botões foram adicionados
+      areChoiceButtonsAdded = true;
     }
   });
-
-});
 
