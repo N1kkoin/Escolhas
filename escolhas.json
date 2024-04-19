@@ -1,8 +1,8 @@
 {
   "start": {
     "story": {
-      "pt": "<p>Depois que terminei a faculdade percebi um problema no mercado: para conseguir um emprego preciso de experiência, porém para conseguir experiência preciso trabalhar.</p><p>Preciso de QI (quem indica) e contatos, mas a maioria dos meus colegas estão na mesma situação que a minha, afinal, quem é que quer contratar uma advogada sem experiência profissional?</p><p>Por que um lugar pequeno me contrataria se pode pegar alguém que realmente saberia defender a empresa que suou tanto para construir e por que uma empresa maior me escolheria entre tantos candidatos?</p><p>O que me faz diferir dos outros advogados? Qual seria meu nicho?</p><p>Faz alguns meses que estou presa desse limbo. Antes ficava horas procurando vagas e me inscrevendo, hoje em dia… fico no meu computador jogando ou vendo memes.</p><p>Mas, nesses últimos tempos encontrei um novo hobby.",
-      "en": "<p>After finishing college, I noticed a problem in the job market: to get a job, I need experience, but to gain experience, I need to work.</p><p>I need connections and referrals, but most of my colleagues are in the same situation as mine. After all, who would want to hire an inexperienced lawyer?</p><p>Why would a small firm hire me when they could pick someone who really knows how to defend the company they worked so hard to build? And why would a larger company choose me among so many candidates?</p><p>What sets me apart from other lawyers? What would be my niche?</p><p>For a few months now, I've been stuck in this limbo. I used to spend hours searching for job openings and applying, but nowadays... I just sit at my computer playing games or watching memes.</p><p>However, in these recent times, I've found a new hobby.</p>"
+      "pt": "<p>Sou {{playerName}}, uma renomada arqueóloga. Decidi embarcar em uma expedição para encontrar o mítico Templo Esmeralda, uma antiga estrutura escondida nas profundezas da Amazônia.</p><p>Dizem que este templo guarda um artefato poderoso capaz de conceder desejos. Porém, as lendas também alertam sobre as armadilhas mortais e os espíritos guardiões que protegem o local.</p><p>Depois de meses de pesquisa, finalmente encontrei uma pista que me levaria ao templo. Decidi me preparar e iniciar esta jornada épica.</p>",
+      "en": "<p>I'm {{playerName}}, a renowned archaeologist. I've decided to embark on an expedition to find the mythical Emerald Temple, an ancient structure hidden deep within the Amazon.</p><p>They say this temple holds a powerful artifact capable of granting wishes. However, legends also warn about the deadly traps and guardian spirits that protect the site.</p><p>After months of research, I've finally found a clue that would lead me to the temple. I've decided to prepare myself and start this epic journey.</p>"
     },
     "choices": [
       {
@@ -10,88 +10,222 @@
           "pt": "▶",
           "en": "▶"
         },
-        "next": "left"
+        "next": "jungle"
       }
     ]
   },
-  "left": {
+  "jungle": {
     "story": {
-      "pt": "Você encontra uma cabana abandonada, {{playerName}}.",
-      "en": "You come across an abandoned cabin, {{playerName}}."
+      "pt": "<p>Após semanas de caminhada pela densa floresta amazônica, sinto que estou cada vez mais próximo do Templo Esmeralda. Contudo, o ambiente ao meu redor torna-se cada vez mais misterioso e perigoso.</p><p>Enquanto prosseguia, encontrei um acampamento abandonado. Será que alguém já esteve aqui antes de mim? Devo investigar ou prosseguir?</p>",
+      "en": "<p>After weeks of trekking through the dense Amazon rainforest, I feel I'm getting closer and closer to the Emerald Temple. However, the surroundings become increasingly mysterious and dangerous.</p><p>As I continued, I stumbled upon an abandoned campsite. Has someone been here before me? Should I investigate or continue?</p>"
     },
     "choices": [
       {
         "text": {
-          "pt": "Investigar a cabana, {{playerName}}.",
-          "en": "Investigate the cabin, {{playerName}}."
+          "pt": "Investigar o acampamento",
+          "en": "Investigate the campsite"
         },
-        "next": "investigate"
+        "next": "investigateCamp"
       },
       {
         "text": {
-          "pt": "Continuar a explorar a floresta, {{playerName}}.",
-          "en": "Continue exploring the forest, {{playerName}}."
+          "pt": "Continuar na trilha",
+          "en": "Continue on the trail"
         },
-        "next": "continue"
+        "next": "continueTrail"
       }
     ]
   },
-  "investigate": {
+  "investigateCamp": {
     "story": {
-      "pt": "Você entra na cabana e encontra uma mesa com alguns objetos antigos. Há também uma escada que desce para um porão escuro. O que você quer fazer?",
-      "en": "You enter the cabin and find a table with some old objects. There's also a staircase leading down to a dark basement. What do you want to do?"
+      "pt": "<p>Ao investigar o acampamento, encontro um diário e um mapa que parecem pertencer a um explorador anterior. O diário menciona armadilhas no caminho para o templo e indica um caminho seguro. O mapa mostra uma rota alternativa.</p><p>Armado com estas informações, devo decidir qual caminho seguir. Será que o caminho seguro é realmente seguro?</p>",
+      "en": "<p>Upon investigating the campsite, I find a diary and a map that seem to belong to a previous explorer. The diary mentions traps on the path to the temple and points to a safe route. The map shows an alternative route.</p><p>Armed with this information, I must decide which path to take. Is the safe path really safe?</p>"
     },
     "choices": [
       {
         "text": {
-          "pt": "Investigar a mesa",
-          "en": "Investigate the table"
+          "pt": "Seguir o caminho seguro",
+          "en": "Follow the safe path"
         },
-        "next": "investigateTable"
+        "next": "safePath"
       },
       {
         "text": {
-          "pt": "Explorar o porão",
-          "en": "Explore the basement"
+          "pt": "Optar pela rota alternativa",
+          "en": "Opt for the alternative route"
         },
-        "next": "exploreBasement"
-      },
-      {
-        "text": {
-          "pt": "Voltar para fora",
-          "en": "Go back outside"
-        },
-        "next": "goOutside"
+        "next": "alternativeRoute"
       }
     ]
   },
-  "continue": {
+  "continueTrail": {
     "story": {
-      "pt": "Você decide continuar sua exploração na floresta sombria. Enquanto caminha, você encontra uma trilha estreita que parece ser pouco usada. O que você quer fazer?",
-      "en": "You decide to continue your exploration in the dark forest. As you walk, you come across a narrow trail that seems to be less traveled. What do you want to do?"
+      "pt": "<p>Decido continuar na trilha, ignorando o acampamento abandonado. Enquanto avanço, ouço ruídos estranhos e sinto que estou sendo observado. A floresta ao meu redor parece viva, como se escondesse segredos antigos.</p><p>O que você fará agora, {{playerName}}?</p>",
+      "en": "<p>I decide to continue on the trail, ignoring the abandoned campsite. As I advance, I hear strange noises and feel like I'm being watched. The forest around me seems alive, as if it hides ancient secrets.</p><p>What will you do now, {{playerName}}?</p>"
     },
     "choices": [
       {
         "text": {
-          "pt": "Seguir a trilha",
-          "en": "Follow the trail"
+          "pt": "Investigar os ruídos",
+          "en": "Investigate the noises"
         },
-        "next": "followTrail"
+        "next": "investigateNoises"
       },
       {
         "text": {
-          "pt": "Continuar na rota original",
-          "en": "Continue on the original route"
+          "pt": "Continuar caminhando",
+          "en": "Continue walking"
         },
-        "next": "continueOriginalRoute"
-      },
-      {
-        "text": {
-          "pt": "Voltar para a bifurcação",
-          "en": "Go back to the fork"
-        },
-        "next": "goBackToFork"
+        "next": "continueWalking"
       }
     ]
+  },
+  "safePath": {
+    "story": {
+      "pt": "<p>Decido seguir o caminho seguro indicado no diário. Conforme avanço, encontro e desativo várias armadilhas cuidadosamente preparadas. Parece que as informações eram precisas.</p><p>Finalmente, após superar os desafios, avisto a entrada majestosa do Templo Esmeralda à distância. Estou prestes a descobrir o que me espera dentro dele.</p>",
+      "en": "<p>I decide to follow the safe path indicated in the diary. As I advance, I encounter and disable several carefully prepared traps. It seems the information was accurate.</p><p>Finally, after overcoming the challenges, I spot the majestic entrance of the Emerald Temple in the distance. I'm about to discover what awaits me inside.</p>"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Entrar no Templo Esmeralda",
+          "en": "Enter the Emerald Temple"
+        },
+        "next": "emeraldTemple"
+      }
+    ]
+  },
+  "alternativeRoute": {
+    "story": {
+      "pt": "<p>Decido optar pela rota alternativa mostrada no mapa. Embora o caminho pareça mais curto, ele é repleto de obstáculos e desafios. Cada passo que dou é uma prova de determinação e coragem.</p><p>Após enfrentar vários desafios, finalmente chego à entrada do Templo Esmeralda. Agora, é hora de descobrir o que o templo guarda.</p>",
+      "en": "<p>I decide to opt for the alternative route shown on the map. Although the path seems shorter, it's filled with obstacles and challenges. Every step I take is a testament to determination and courage.</p><p>After facing several challenges, I finally reach the entrance of the Emerald Temple. Now, it's time to discover what the temple holds.</p>"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Entrar no Templo Esmeralda",
+          "en": "Enter the Emerald Temple"
+        },
+        "next": "emeraldTemple"
+      }
+    ]
+  },
+  "investigateNoises": {
+    "story": {
+      "pt": "<p>Decido investigar os ruídos que ouvi. Com cautela, me aproximo de um arbusto e encontro uma criatura misteriosa olhando para mim. Ela parece curiosa e não hostil.</p><p>Esta criatura pode ser amiga ou inimiga. O que você fará agora, {{playerName}}?</p>",
+      "en": "<p>I decide to investigate the noises I heard. Cautiously, I approach a bush and find a mysterious creature looking at me. It seems curious and not hostile.</p><p>This creature could be a friend or foe. What will you do now, {{playerName}}?</p>"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Interagir com a criatura",
+          "en": "Interact with the creature"
+        },
+        "next": "interactCreature"
+      },
+      {
+        "text": {
+          "pt": "Evitar a criatura e continuar",
+          "en": "Avoid the creature and continue"
+        },
+        "next": "avoidCreature"
+      }
+    ]
+  },
+  "continueWalking": {
+    "story": {
+      "pt": "<p>Decido ignorar os ruídos e continuar caminhando. A floresta ao meu redor parece calma novamente, e eu continuo avançando na direção do Templo Esmeralda.</p><p>À medida que me aproximo, sinto uma energia intensa emanando do templo. Estou quase lá, {{playerName}}.</p>",
+      "en": "<p>I decide to ignore the noises and keep walking. The forest around me seems calm again, and I continue advancing towards the Emerald Temple.</p><p>As I get closer, I feel an intense energy emanating from the temple. I'm almost there, {{playerName}}.</p>"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Continuar em direção ao templo",
+          "en": "Continue towards the temple"
+        },
+        "next": "approachTemple"
+      }
+    ]
+  },
+  "interactCreature": {
+    "story": {
+      "pt": "<p>Com curiosidade, me aproximo da criatura e tento interagir com ela. Ela se mostra amigável e me guia por um caminho mais seguro na floresta, evitando armadilhas e obstáculos.</p><p>Grato pela ajuda da criatura, finalmente alcanço a entrada majestosa do Templo Esmeralda. Estou pronto para descobrir os segredos que o templo guarda.</p>",
+      "en": "<p>With curiosity, I approach the creature and try to interact with it. It appears friendly and guides me along a safer path in the forest, avoiding traps and obstacles.</p><p>Grateful for the creature's help, I finally reach the majestic entrance of the Emerald Temple. I'm ready to uncover the secrets the temple holds.</p>"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Entrar no Templo Esmeralda",
+          "en": "Enter the Emerald Temple"
+        },
+        "next": "emeraldTemple"
+      }
+    ]
+  },
+  "avoidCreature": {
+    "story": {
+      "pt": "<p>Decido evitar a criatura e continuar minha jornada sozinho. A floresta ao meu redor permanece misteriosa, mas sinto que estou mais próximo do Templo Esmeralda.</p><p>Depois de enfrentar vários desafios, finalmente avisto a entrada majestosa do Templo Esmeralda. Estou prestes a descobrir o que me espera dentro dele.</p>",
+      "en": "<p>I decide to avoid the creature and continue my journey alone. The forest around me remains mysterious, but I feel I'm closer to the Emerald Temple.</p><p>After facing several challenges, I finally spot the majestic entrance of the Emerald Temple. I'm about to discover what awaits me inside.</p>"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Entrar no Templo Esmeralda",
+          "en": "Enter the Emerald Temple"
+        },
+        "next": "emeraldTemple"
+      }
+    ]
+  },
+  "approachTemple": {
+    "story": {
+      "pt": "<p>À medida que me aproximo, vejo as imensas portas do Templo Esmeralda se abrirem lentamente, como se me convidassem a entrar. Com o coração acelerado, dou os primeiros passos em direção ao desconhecido.</p><p>O que me espera dentro do Templo Esmeralda, {{playerName}}?</p>",
+      "en": "<p>As I approach, I see the immense doors of the Emerald Temple slowly open, as if inviting me in. With a racing heart, I take the first steps towards the unknown.</p><p>What awaits me inside the Emerald Temple, {{playerName}}?</p>"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Entrar no Templo Esmeralda",
+          "en": "Enter the Emerald Temple"
+        },
+        "next": "emeraldTemple"
+      }
+    ]
+  },
+  "emeraldTemple": {
+    "story": {
+      "pt": "<p>Ao entrar no Templo Esmeralda, sou recebido por uma beleza deslumbrante e uma sensação de paz. As paredes estão adornadas com artefatos antigos e inscrições misteriosas.</p><p>No centro do templo, vejo um pedestal com um cristal brilhante, o artefato que tantos buscam. Estou diante de uma decisão: tomar o cristal e pedir um desejo ou deixá-lo onde está, respeitando os antigos guardiões do templo.</p><p>Qual será a sua escolha, {{playerName}}?</p>",
+      "en": "<p>Upon entering the Emerald Temple, I'm greeted by breathtaking beauty and a sense of peace. The walls are adorned with ancient artifacts and mysterious inscriptions.</p><p>In the center of the temple, I see a pedestal with a glowing crystal, the sought-after artifact. I stand before a decision: take the crystal and make a wish or leave it be, respecting the ancient guardians of the temple.</p><p>What will be your choice, {{playerName}}?</p>"
+    },
+    "choices": [
+      {
+        "text": {
+          "pt": "Tomar o cristal e fazer um desejo",
+          "en": "Take the crystal and make a wish"
+        },
+        "next": "takeCrystal"
+      },
+      {
+        "text": {
+          "pt": "Deixar o cristal onde está",
+          "en": "Leave the crystal be"
+        },
+        "next": "leaveCrystal"
+      }
+    ]
+  },
+  "takeCrystal": {
+    "story": {
+      "pt": "<p>Decido tomar o cristal e fazer um desejo. Ao tocar no cristal, uma energia poderosa envolve o templo e o artefato desaparece, cumprindo meu desejo secreto.</p><p>Saio do Templo Esmeralda com um sentimento de realização e admiração. A jornada foi árdua, mas valeu a pena cada desafio.</p>",
+      "en": "<p>I decide to take the crystal and make a wish. Upon touching the crystal, a powerful energy envelops the temple, and the artifact disappears, fulfilling my secret wish.</p><p>I leave the Emerald Temple with a feeling of accomplishment and wonder. The journey was tough, but it was worth every challenge.</p>"
+    },
+    "choices": []
+  },
+  "leaveCrystal": {
+    "story": {
+      "pt": "<p>Decido deixar o cristal onde está, respeitando os antigos guardiões do Templo Esmeralda. Com um sentimento de respeito e gratidão, retorno à floresta, levando comigo as memórias e aprendizados desta aventura épica.</p><p>A jornada pelo Templo Esmeralda termina aqui, mas o espírito de aventura dentro de mim continua vivo e forte.</p>",
+      "en": "<p>I decide to leave the crystal be, respecting the ancient guardians of the Emerald Temple. With a feeling of respect and gratitude, I return to the forest, carrying with me the memories and lessons of this epic adventure.</p><p>The journey to the Emerald Temple ends here, but the spirit of adventure within me remains alive and strong.</p>"
+    },
+    "choices": []
   }
 }
