@@ -89,6 +89,7 @@ function makeChoice(choiceNumber) {
 function updateUI() {
   const storyElement = document.getElementById("story");
   const selectedChoiceDiv = document.getElementById("selectedChoice");
+  const choicesContainer = document.getElementById("choices");
 
   // Substitui a tag {{playerName}} pelo nome do jogador na história
   gameState.story = gameState.story.replace(/{{playerName}}/g, gameState.playerName);
@@ -101,53 +102,43 @@ function updateUI() {
     };
   });
 
-    // Exibe a história com o conteúdo HTML renderizado
-    storyElement.innerHTML = gameState.story;
-// Verifica qual escolha está selecionada
-const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
-if (selectedChoiceBtn) {
-  const choiceText = selectedChoiceBtn.innerText;
-  if (choiceText.trim() === "▶") {
-    // Se a opção selecionada tiver o texto "▶", não exibiremos nada na div
-    selectedChoiceDiv.innerText = "";
+  // Exibe a história com o conteúdo HTML renderizado
+  storyElement.innerHTML = gameState.story;
+
+  // Verifica qual escolha está selecionada
+  const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
+  if (selectedChoiceBtn) {
+    const choiceText = selectedChoiceBtn.innerText;
+    if (choiceText.trim() === "▶") {
+      // Se a opção selecionada tiver o texto "▶", não exibiremos nada na div
+      selectedChoiceDiv.innerText = "";
+    } else {
+      selectedChoiceBtn.classList.add("selected-choice");
+      selectedChoiceDiv.innerText = `"` + choiceText + `"`;
+    }
   } else {
-    selectedChoiceBtn.classList.add("selected-choice");
-    selectedChoiceDiv.innerText = `"` + choiceText + `"`;
+    selectedChoiceDiv.innerText = ""; // Caso nenhuma escolha seja selecionada, a div fica vazia
   }
-} else {
-  selectedChoiceDiv.innerText = ""; // Caso nenhuma escolha seja selecionada, a div fica vazia
+
+  // Limpa o conteúdo anterior dos botões de escolha
+  choicesContainer.innerHTML = "";
+
+  // Exibe as escolhas imediatamente após o texto da história
+  gameState.choices.forEach((choice, index) => {
+    const choiceBtn = document.createElement("button");
+    choiceBtn.id = "choice" + (index + 1);
+    choiceBtn.onclick = () => makeChoice(index + 1);
+    choiceBtn.innerText = getLocalizedText(choice.text.pt, choice.text.en); // Mostra o texto da opção no idioma selecionado
+    choicesContainer.appendChild(choiceBtn);
+  });
+
+  // Adiciona a classe "selected-choice" ao botão selecionado (caso exista)
+  const selectedChoiceBtnNew = document.getElementById("choice" + gameState.currentChoice);
+  if (selectedChoiceBtnNew) {
+    selectedChoiceBtnNew.classList.add("selected-choice");
+  }
 }
 
-
-
-  // Oculta os botões antes de exibir o texto com efeito de digitação
-  const choicesContainer = document.getElementById("choices");
-  choicesContainer.innerHTML = ""; // Limpa o conteúdo anterior dos botões de escolha
-
-  // Exibe a história com efeito de digitação
-  typeText(storyElement, gameState.story, 20);
-
-  // Espera até que a história tenha sido completamente exibida antes de mostrar as escolhas
-  setTimeout(() => {
-    // Exibe as escolhas com efeito de digitação
-    gameState.choices.forEach((choice, index) => {
-      const choiceBtn = document.createElement("button");
-      choiceBtn.id = "choice" + (index + 1);
-      choiceBtn.onclick = () => makeChoice(index + 1);
-      choiceBtn.style.display = "none";
-      choiceBtn.innerText = getLocalizedText(choice.text.pt, choice.text.en); // Mostra o texto da opção no idioma selecionado
-      choicesContainer.appendChild(choiceBtn);
-    });
-
-    // Mostra os botões de escolha
-    const choiceBtns = choicesContainer.querySelectorAll("button");
-    choiceBtns.forEach((btn) => (btn.style.display = "block"));
-
-    // Remove a classe "selected-choice" dos botões antes de atualizar
-    choiceBtns.forEach((btn) => btn.classList.remove("selected-choice"));
-
-  }, gameState.story.length * 20); // Aguarda o tempo necessário para digitar todo o texto da história
-}
 
       
       
@@ -222,12 +213,12 @@ function toggleLanguage() {
       
 let typingTimeout;
 
-function typeText(element, text, interval) {
+function typeText(element, text) {
   let index = 0;
   const tempElement = document.createElement("span");
   element.innerHTML = ""; // Limpa o conteúdo anterior antes de digitar o novo texto
 
-  function type() {
+  while (index < text.length) {
     const char = text.charAt(index);
 
     if (char === "<") {
@@ -245,14 +236,9 @@ function typeText(element, text, interval) {
       element.innerHTML = tempElement.innerHTML;
       index++;
     }
-
-    if (index < text.length) {
-      typingTimeout = setTimeout(type, interval);
-    }
   }
-
-  type();
 }
+
   
 
   function toggleMenu() {
@@ -263,40 +249,4 @@ function typeText(element, text, interval) {
         menuGroup.style.display = "none";
     }
 }
-
-  // Variável para rastrear se os botões de escolha já foram adicionados
-  let areChoiceButtonsAdded = false;
-
-  const showFullTextBtn = document.getElementById("showFullTextBtn");
-  showFullTextBtn.addEventListener("click", function () {
-    // Interrompe a animação de digitação instantaneamente
-    clearTimeout(typingTimeout);
-
-    // Exibe todo o texto imediatamente
-    const storyElement = document.getElementById("story");
-    storyElement.innerHTML = gameState.story;
-
-    // Verifica se os botões de escolha já foram adicionados
-    if (!areChoiceButtonsAdded) {
-      const choicesContainer = document.getElementById("choices");
-      choicesContainer.innerHTML = ""; // Limpa o conteúdo anterior dos botões de escolha
-
-      gameState.choices.forEach((choice, index) => {
-        const choiceBtn = document.createElement("button");
-        choiceBtn.id = "choice" + (index + 1);
-        choiceBtn.onclick = () => makeChoice(index + 1);
-        choiceBtn.innerText = getLocalizedText(choice.text.pt, choice.text.en); // Mostra o texto da opção no idioma selecionado
-        choicesContainer.appendChild(choiceBtn);
-      });
-
-      // Adiciona a classe "selected-choice" ao botão selecionado (caso exista)
-      const selectedChoiceBtn = document.getElementById("choice" + gameState.currentChoice);
-      if (selectedChoiceBtn) {
-        selectedChoiceBtn.classList.add("selected-choice");
-      }
-
-      // Define a flag como true para indicar que os botões foram adicionados
-      areChoiceButtonsAdded = true;
-    }
-  });
 
