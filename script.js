@@ -27,26 +27,26 @@ async function startNewGame() {
 }
 
 
-    function continueGame() {
-        isGameStarted = true;
-      // Recupera o estado do jogo do armazenamento local, se disponível, caso contrário, inicia um novo jogo
-      const savedGameState = JSON.parse(localStorage.getItem("textAdventureGameState"));
-      if (savedGameState) {
-        gameState = savedGameState;
-      } else {
-        gameState = {
-          story: getLocalizedText("Você não tem um jogo salvo. Iniciando novo jogo...", "You don't have a saved game. Starting a new game..."),
-          choices: [
-            { text: getLocalizedText("Continuar", "Continue"), next: "startNew" },
-            { text: getLocalizedText("Iniciar Novo Jogo", "Start New Game"), next: "startNew" }
-          ]
-        };
-      }
-      updateUI();
-      document.getElementById("start-container").style.display = "none";
-      document.getElementById("game-container").style.display = "block";
-    }
-    
+function continueGame() {
+  isGameStarted = true;
+  // Recupera o estado do jogo do armazenamento local, se disponível, caso contrário, inicia um novo jogo
+  const savedGameState = JSON.parse(localStorage.getItem("textAdventureGameState"));
+  if (savedGameState) {
+    gameState = savedGameState;
+  } else {
+    gameState = {
+      story: getLocalizedText("Você não tem um jogo salvo. Iniciando novo jogo...", "You don't have a saved game. Starting a new game..."),
+      choices: [
+        { text: getLocalizedText("Continuar", "Continue"), next: "startNew" },
+        { text: getLocalizedText("Iniciar Novo Jogo", "Start New Game"), next: "startNew" }
+      ]
+    };
+  }
+  updateUI();
+  document.getElementById("start-container").style.display = "none";
+  document.getElementById("game-container").style.display = "block";
+}
+
 // Função para fazer o fetch do arquivo JSON
 async function fetchChoices() {
   const response = await fetch('escolhas.json');
@@ -62,7 +62,7 @@ function makeChoice(choiceNumber) {
 
   // Obtém a próxima etapa com base na escolha feita pelo jogador
   const nextStep = choice.next;
-  
+
 
   // Carrega as novas escolhas e a história da próxima etapa do arquivo JSON
   fetchChoices()
@@ -85,7 +85,7 @@ function makeChoice(choiceNumber) {
       console.error('Erro ao carregar escolhas.json:', error);
     });
 }
-      
+
 function updateUI() {
   const storyElement = document.getElementById("story");
   const selectedChoiceDiv = document.getElementById("selectedChoice");
@@ -93,7 +93,7 @@ function updateUI() {
 
   // Substitui a tag {{playerName}} pelo nome do jogador na história
   gameState.story = gameState.story.replace(/{{playerName}}/g, gameState.playerName);
-  
+
   // Substitui a tag {{playerName}} nas opções de escolha
   gameState.choices.forEach((choice) => {
     choice.text = {
@@ -140,8 +140,8 @@ function updateUI() {
 }
 
 
-      
-      
+
+
 function toggleLanguage() {
   // Verifica se o jogo já começou
   if (isGameStarted) {
@@ -150,7 +150,7 @@ function toggleLanguage() {
   } else {
     // Alterna entre os idiomas 'pt' (português) e 'en' (inglês)
     currentLanguage = currentLanguage === "pt" ? "en" : "pt";
-    
+
     // Salva o idioma selecionado no armazenamento local
     localStorage.setItem("textAdventureLanguage", currentLanguage);
 
@@ -159,58 +159,58 @@ function toggleLanguage() {
 
     // Atualiza o texto do jogo com o novo idioma selecionado
     gameState.story = getLocalizedText(gameState.story, gameState.story);
-    
+
     // Atualiza a interface do usuário
     updateUI();
   }
 }
 
 
-    // Função para alternar entre o modo claro e o modo escuro
-    function toggleDarkMode() {
-      const body = document.body;
-      body.classList.toggle("dark-mode");
+// Função para alternar entre o modo claro e o modo escuro
+function toggleDarkMode() {
+  const body = document.body;
+  body.classList.toggle("dark-mode");
 
-      // Salvar a preferência do usuário no armazenamento local
-      const isDarkMode = body.classList.contains("dark-mode");
-      localStorage.setItem("textAdventureDarkMode", isDarkMode);
+  // Salvar a preferência do usuário no armazenamento local
+  const isDarkMode = body.classList.contains("dark-mode");
+  localStorage.setItem("textAdventureDarkMode", isDarkMode);
+}
+
+// Verifica a preferência do usuário no carregamento da página
+document.addEventListener("DOMContentLoaded", function () {
+  const isDarkMode = localStorage.getItem("textAdventureDarkMode") === "true";
+  const body = document.body;
+  body.classList.toggle("dark-mode", isDarkMode);
+
+  // Verifica se há um idioma salvo no armazenamento local
+  const savedLanguage = localStorage.getItem("textAdventureLanguage");
+  if (savedLanguage) {
+    currentLanguage = savedLanguage;
+  } else {
+    // Se não houver, tenta obter o idioma do navegador
+    const userLanguage = navigator.language.toLowerCase();
+    if (userLanguage.startsWith("pt")) {
+      currentLanguage = "pt";
+    } else {
+      currentLanguage = "en";
     }
+  }
 
-    // Verifica a preferência do usuário no carregamento da página
-    document.addEventListener("DOMContentLoaded", function () {
-      const isDarkMode = localStorage.getItem("textAdventureDarkMode") === "true";
-      const body = document.body;
-      body.classList.toggle("dark-mode", isDarkMode);
+  updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
+});
 
-      // Verifica se há um idioma salvo no armazenamento local
-      const savedLanguage = localStorage.getItem("textAdventureLanguage");
-      if (savedLanguage) {
-        currentLanguage = savedLanguage;
-      } else {
-        // Se não houver, tenta obter o idioma do navegador
-        const userLanguage = navigator.language.toLowerCase();
-        if (userLanguage.startsWith("pt")) {
-          currentLanguage = "pt";
-        } else {
-          currentLanguage = "en";
-        }
-      }
+// Função para obter o texto localizado com base no idioma atual
+function getLocalizedText(ptText, enText) {
+  return currentLanguage === "pt" ? ptText : enText;
+}
 
-      updateUI(); // Atualiza a interface para exibir o texto no idioma selecionado
-    });
+function getPlayerName() {
+  const name = prompt(getLocalizedText("Digite seu nome:", "Enter your name:"));
+  return name || "Yaami"; // Se o jogador não digitar um nome, use "Luni" como padrão
+}
 
-    // Função para obter o texto localizado com base no idioma atual
-    function getLocalizedText(ptText, enText) {
-      return currentLanguage === "pt" ? ptText : enText;
-    }
-
-    function getPlayerName() {
-        const name = prompt(getLocalizedText("Digite seu nome:", "Enter your name:"));
-        return name || "Yaami"; // Se o jogador não digitar um nome, use "Luni" como padrão
-      }
-      
 // ${gameState.playerName}
-      
+
 let typingTimeout;
 
 function typeText(element, text) {
@@ -239,14 +239,14 @@ function typeText(element, text) {
   }
 }
 
-  
 
-  function toggleMenu() {
-    var menuGroup = document.getElementById("menuGroup");
-    if (menuGroup.style.display === "none") {
-        menuGroup.style.display = "flex";
-    } else {
-        menuGroup.style.display = "none";
-    }
+
+function toggleMenu() {
+  var menuGroup = document.getElementById("menuGroup");
+  if (menuGroup.style.display === "none") {
+    menuGroup.style.display = "flex";
+  } else {
+    menuGroup.style.display = "none";
+  }
 }
 
